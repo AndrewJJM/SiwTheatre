@@ -74,7 +74,8 @@ public class BookingController {
 						? "redirect:/admin/bookings/" + booking.getId()
 						: "redirect:/bookings/" + booking.getId();
 			} catch (DuplicateBookingException e) {
-				bindingResult.reject("duplicate.booking");
+				// default esplicito: il codice esiste solo in messages_IT
+				bindingResult.reject("duplicate.booking", e.getMessage());
 			} catch (NotEnoughTicketsException e) {
 				bindingResult.rejectValue("numTickets", "error.booking", e.getMessage());
 			} catch (ObjectOptimisticLockingFailureException e) {
