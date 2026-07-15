@@ -24,10 +24,10 @@
 			<div class="row">
 			    <div th:each="booking : ${bookings}" class="col-md-4 mb-4">
 			        <div class="artist-box rounded-3 border-2">
-			            <div class="text-white">Utente: <a th:text="${booking.user}"></a></div>
-			            <div class="text-white">Spettacolo: <a th:text="${booking.play.name}"></a></div>
-			            <div class="text-white">Indirizzo: <a th:text="${booking.play.location + ', ' + booking.play.city}"></a></div>
-						<div class="text-white">Giorno: <a th:text="${#temporals.format(booking.play.date, 'dd-MM-yyyy')} + ', ore ' + ${#temporals.format(booking.play.date, 'HH:mm')}"></a></div>
+			            <div class="text-white">Utente: <a th:text="${booking.userFullName}"></a></div>
+			            <div class="text-white">Spettacolo: <a th:text="${booking.playName}"></a></div>
+			            <div class="text-white">Indirizzo: <a th:text="${booking.playLocation + ', ' + booking.playCity}"></a></div>
+						<div class="text-white">Giorno: <a th:text="${#temporals.format(booking.playDate, 'dd-MM-yyyy')} + ', ore ' + ${booking.playTime}"></a></div>
 						<div class="text-white">Numero Biglietti: <a th:text="${booking.numTickets}"></a></div>
 
 						<br>

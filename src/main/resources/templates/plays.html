@@ -31,8 +31,8 @@
 	          <div class="row g-3" >
 	              <div class="col-lg-3 col-sm-6" th:each="play : ${plays}">
 	                  <a class="grid-box" th:href="@{'/plays/' + ${play.id}}">
-	                      <img th:if="${play.image == null}" class="img-fluid standard-image rounded-top-4" src="/images/plays/Notre-Dame-20.png" />
-						  <img th:unless="${play.image == null}" class="img-fluid standard-image rounded-top-4" th:src="@{'/image/' + ${play.image.id}}" />
+	                      <img th:if="${play.imageId == null}" class="img-fluid standard-image rounded-top-4" src="/images/plays/Notre-Dame-20.png" />
+						  <img th:unless="${play.imageId == null}" class="img-fluid standard-image rounded-top-4" th:src="@{'/image/' + ${play.imageId}}" />
 	                      <div class="grid-caption mt-n2 rounded-bottom-4">
 	                        <div class="grid-caption-heading text-white" th:text="${play.name}">Otello</div>
 	                        <div class="grid-caption-subheading text-white" th:text="${play.city}+' '+'('+${#temporals.format(play.date, 'dd-MM-yyyy')}+')'">Roma (11/11/11)</div>

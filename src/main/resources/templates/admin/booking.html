@@ -17,20 +17,20 @@
                 <div class="container my-4">
                     <div class="card border-3 shadow-lg">
                         <div class="card-header text-center bg-red text-white">
-                            <h1 th:text="${booking.play.name} + ' (' + ${#temporals.format(booking.play.date, 'dd-MM-yyyy')} + ', ' + ${#temporals.format(booking.play.date, 'HH:mm')} + ')' " class="fw-bold text-uppercase"></h1>
+                            <h1 th:text="${booking.playName} + ' (' + ${#temporals.format(booking.playDate, 'dd-MM-yyyy')} + ', ' + ${booking.playTime} + ')' " class="fw-bold text-uppercase"></h1>
                         </div>
                         <div class="card-body bg-black">
                             <div class="row">
                                 <div class="col-md-6 text-center align-self-center">
-                                    <img th:if="${booking.play.image == null}" class="img-fluid standard-image rounded-4" src="/images/plays/Notre-Dame-20.png" />
-                                    <img th:unless="${booking.play.image == null}" class="img-fluid standard-image rounded-3" th:src="@{'/image/' + ${booking.play.image.id}}" />
+                                    <img th:if="${booking.playImageId == null}" class="img-fluid standard-image rounded-4" src="/images/plays/Notre-Dame-20.png" />
+                                    <img th:unless="${booking.playImageId == null}" class="img-fluid standard-image rounded-3" th:src="@{'/image/' + ${booking.playImageId}}" />
                                 </div>
                                 <div class="col-md-6 text-center align-self-center">
                                     <h2>Dettagli Prenotazione:</h2>
                                     <br>
-                                    <h4><span class="text-red">Utente:</span> <span th:text="${booking.user}"></span></h4>
+                                    <h4><span class="text-red">Utente:</span> <span th:text="${booking.userFullName}"></span></h4>
                                     <h4><span class="text-red">Numero biglietti:</span> <span th:text="${booking.numTickets}"></span></h4>
-                                    <h4><span class="text-red">Prezzo totale:</span> <span th:text="${totalPrice}"></span> euro</h4>
+                                    <h4><span class="text-red">Prezzo totale:</span> <span th:text="${booking.totalPrice}"></span> euro</h4>
                                 </div>
                             </div>
                         </div>

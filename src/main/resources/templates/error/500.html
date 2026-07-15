@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Errore interno</title>
+    <div th:replace="~{fragments :: Stylesheet}"></div>
+</head>
+<body>
+    <div class="wrapper d-flex flex-column min-vh-100 justify-content-center align-items-center text-center">
+        <h1 class="display-1 fw-bolder text-red">500</h1>
+        <h2 class="fw-bold">Qualcosa è andato storto</h2>
+        <p class="lead" th:text="${errorMessage} ?: 'Si è verificato un errore inatteso. Riprova più tardi.'"></p>
+        <a href="/" class="btn btn-danger btn-lg mt-3">Torna alla home</a>
+    </div>
+</body>
+</html>

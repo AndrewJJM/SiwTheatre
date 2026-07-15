@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.dto.PlayDTO;
+import it.uniroma3.siw.mapper.PlayMapper;
 import it.uniroma3.siw.model.Artist;
-import it.uniroma3.siw.model.Booking;
 import it.uniroma3.siw.model.Image;
 import it.uniroma3.siw.model.Play;
 import it.uniroma3.siw.repository.ImageRepository;
@@ -38,18 +40,19 @@ public class PlayController {
 	@Autowired
 	private ImageRepository imageRepository;
 
+	@Autowired
+	private PlayMapper playMapper;
+
 
 	@GetMapping("/plays/{id}")
 	public String getPlay(@PathVariable("id") Long id, Model model) {
-		Play play = this.playService.findById(id);
-		model.addAttribute("play", play);
-		model.addAttribute("booking", new Booking());
+		model.addAttribute("play", this.playMapper.toDto(this.playService.findById(id)));
 		return "play.html";
 	}
 
 	@GetMapping("/plays")
 	public String showPlays(Model model) {
-		model.addAttribute("plays", this.playService.findAll());
+		model.addAttribute("plays", this.playMapper.toDtoList(this.playService.findAll()));
 		return "plays.html";
 	}
 
@@ -60,7 +63,10 @@ public class PlayController {
 
 	@PostMapping("/searchPlay")
 	public String searchPlays(Model model, @RequestParam String name) {
-		model.addAttribute("plays", this.playService.findByName(name));
+		Play play = this.playService.findByName(name);
+		model.addAttribute("plays", play != null
+				? List.of(this.playMapper.toDto(play))
+				: List.<PlayDTO>of());
 		return "plays.html";
 	}
 
