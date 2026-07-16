@@ -9,7 +9,7 @@
 <body>
     <div><a href="/">Home</a></div>
 	<h1>Effettua una prenotazione</h1>
-	<form th:action="@{/bookings}" method="POST" th:object="${booking}">
+	<form th:action="@{/bookings}" method="POST" th:object="${bookingRequest}">
 	    <div th:if="${#fields.hasGlobalErrors()}">
 	        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 	    </div>
@@ -18,18 +18,18 @@
             Spettacolo:
             <span th:if="${plays.isEmpty()}">Non ci sono spettacoli nel sistema</span>
             <span th:if="${!plays.isEmpty()}">
-                <select th:field="${booking.play}">
-                    <option th:each="play : ${plays}" 
-                            th:value="${play.id}" 
-                            th:text="${play.name} + ' (' + ${play.city} + ', ' + ${#temporals.format(play.date, 'dd-MM-yyyy')} + ', ' + ${#temporals.format(play.date, 'HH:mm')} + ')'">
+                <select th:field="*{playId}">
+                    <option th:each="play : ${plays}"
+                            th:value="${play.id}"
+                            th:text="${play.name} + ' (' + ${play.city} + ', ' + ${#temporals.format(play.date, 'dd-MM-yyyy')} + ', ' + ${play.time} + ')'">
                         Seleziona uno spettacolo
                     </option>
                 </select>
             </span>
         </div>
-    
+
      <div>
-        Numero biglietti: <input type="text" th:field="${booking.numTickets}">
+        Numero biglietti: <input type="text" th:field="*{numTickets}">
         <span th:if="${#fields.hasErrors('numTickets')}" th:errors="*{numTickets}"></span>
     </div>
 

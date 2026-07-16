@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -56,6 +57,12 @@ public class Play {
 	
     @OneToOne(cascade = CascadeType.ALL)
     private Image image;
+
+	/* Optimistic locking: se due transazioni modificano lo stesso Play
+	 * (es. due prenotazioni concorrenti sugli ultimi biglietti), la seconda
+	 * fallisce al commit invece di sovrascrivere la prima. */
+	@Version
+	private Long version;
 
 	public Long getId() {
 		return id;
@@ -143,6 +150,14 @@ public class Play {
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 	@Override

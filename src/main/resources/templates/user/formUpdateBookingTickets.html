@@ -19,10 +19,10 @@
     
     <div>
         <h2>Dettagli Prenotazione</h2>
-        <p>Spettacolo: <span th:text="${booking.play.name}"></span></p>
-        <p>Luogo: <span th:text="${booking.play.city} + ', ' + ${booking.play.location}"></span></p>
-        <p>Data: <span th:text="${#temporals.format(booking.play.date, 'dd-MM-yyyy')}"></span></p>
-        <p>Orario: <span th:text="${#temporals.format(booking.play.date, 'HH:mm')}"></span></p>
+        <p>Spettacolo: <span th:text="${booking.playName}"></span></p>
+        <p>Luogo: <span th:text="${booking.playCity} + ', ' + ${booking.playLocation}"></span></p>
+        <p>Data: <span th:text="${#temporals.format(booking.playDate, 'dd-MM-yyyy')}"></span></p>
+        <p>Orario: <span th:text="${booking.playTime}"></span></p>
     </div>
 
     <!-- Area di messaggio di errore -->

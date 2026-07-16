@@ -29,7 +29,7 @@
             <div class="col-md-6">
                 <ul class="list-group" th:each="booking : ${bookings}">
                     <li class="list-group-item d-flex justify-content-between align-items-center bg-orange my-2">
-                        <a th:href="@{/admin/bookings/{bookingId}(bookingId=${booking.id})}" class="text-cream fw-bold text-black" th:text="${booking.user} + ' (' + ${booking.play.name} + ')'"></a>
+                        <a th:href="@{/bookings/{bookingId}(bookingId=${booking.id})}" class="text-cream fw-bold text-black" th:text="${booking.userFullName} + ' (' + ${booking.playName} + ')'"></a>
                     </li>
                 </ul>
             </div>

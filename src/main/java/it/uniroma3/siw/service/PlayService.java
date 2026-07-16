@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import it.uniroma3.siw.exception.ResourceNotFoundException;
 import it.uniroma3.siw.model.Play;
 import it.uniroma3.siw.repository.PlayRepository;
-import jakarta.transaction.Transactional;
 
 @Service
 public class PlayService {
@@ -27,7 +29,8 @@ public class PlayService {
 	
 
 	public Play findById(Long id) {
-		return this.playRepository.findById(id).get();
+		return this.playRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Spettacolo", id));
 	}
 	
 	

@@ -22,7 +22,7 @@
             <!-- Form per la prenotazione -->
             <div class="row justify-content-center">
                 <div class="col-md-6 mb-5">
-                    <form th:action="@{/bookings}" method="post" th:object="${booking}">
+                    <form th:action="@{/bookings}" method="post" th:object="${bookingRequest}">
                         <!-- Gestione degli errori globali -->
                         <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
                             <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
@@ -31,25 +31,25 @@
                         <!-- Selezione dello spettacolo -->
                         <div class="mb-2">
                             <label for="play" class="form-label">Spettacolo:</label>
-                            <select th:field="${booking.play}" class="form-control" id="play">
-                                <option th:each="play : ${plays}" th:value="${play.id}" th:text="${play.name} + ' (' + ${play.city} + ', ' + ${#temporals.format(play.date, 'dd-MM-yyyy')} + ', ' + ${#temporals.format(play.date, 'HH:mm')} + ')'">Seleziona uno spettacolo</option>
+                            <select th:field="*{playId}" class="form-control" id="play">
+                                <option th:each="play : ${plays}" th:value="${play.id}" th:text="${play.name} + ' (' + ${play.city} + ', ' + ${#temporals.format(play.date, 'dd-MM-yyyy')} + ', ' + ${play.time} + ')'">Seleziona uno spettacolo</option>
                             </select>
-                            <span class="text-red" th:if="${#fields.hasErrors('play')}" th:errors="*{play}"></span>
+                            <span class="text-red" th:if="${#fields.hasErrors('playId')}" th:errors="*{playId}"></span>
                         </div>
 
                         <!-- Selezione dell'utente -->
                         <div class="mb-2">
                             <label for="user" class="form-label">Utente:</label>
-                            <select th:field="${booking.user}" class="form-control" id="user">
+                            <select th:field="*{userId}" class="form-control" id="user">
                                 <option th:each="user : ${users}" th:value="${user.id}" th:text="${user}">Seleziona un utente</option>
                             </select>
-                            <span class="text-red" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></span>
+                            <span class="text-red" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
                         </div>
 
                         <!-- Inserimento del numero di biglietti -->
                         <div class="mb-2">
                             <label for="numTickets" class="form-label">Numero biglietti:</label>
-                            <input type="text" th:field="${booking.numTickets}" class="form-control" id="numTickets">
+                            <input type="text" th:field="*{numTickets}" class="form-control" id="numTickets">
                             <span class="text-red" th:if="${#fields.hasErrors('numTickets')}" th:errors="*{numTickets}"></span>
                         </div>
 

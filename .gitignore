@@ -23,5 +23,9 @@
 hs_err_pid*
 replay_pid*
 /target
+
+# Secrets / environment
+.env
+.env.local
 target/classes/META-INF/maven/it.uniroma3/siw-food/pom.properties
 target/classes/META-INF/maven/it.uniroma3.siw/siw-theatre/pom.properties
