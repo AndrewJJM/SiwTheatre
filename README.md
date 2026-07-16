@@ -77,6 +77,10 @@ I test di integrazione usano Testcontainers e richiedono Docker in
 esecuzione: avviano un PostgreSQL "usa e getta", inclusa la verifica che due
 prenotazioni concorrenti sugli stessi biglietti non causino overselling.
 
+> Con Docker Desktop 29+ Testcontainers può fallire con `BadRequestException
+> (Status 400)`: il client usa un'API Docker ormai rimossa. Workaround: crea
+> il file `~/.docker-java.properties` con la riga `api.version=1.44`.
+
 ## Gestione dei secret
 
 Nessun secret è versionato: `application.properties` legge le credenziali da
